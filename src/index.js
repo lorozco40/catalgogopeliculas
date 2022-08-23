@@ -1,14 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom/client';  // Línea modificada
 import './index.css';
 import App from './App';
+import { HarperDBProvider } from 'use-harperdb/useHarperDB';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+
+  // Renderizado en DOM
+
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <HarperDBProvider
+      url={process.env.REACT_APP_DB_URL}
+      user={process.env.REACT_APP_USER}
+      password={process.env.REACT_APP_PASSWORD}
+    >
+      <App />
+    </HarperDBProvider>
+  </React.StrictMode>,
+  // document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
